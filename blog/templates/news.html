@@ -71,12 +71,12 @@
                                         href="?page={{ posts.previous_page_number }}{% if request.GET.get.q %}&q={{ request.GET.get.q }}{% endif %}"><i
                                             class="fa fa-angle-left"></i> Previous</a></li>
                                 {% else %}
-                                <li class="disabled btn btn-warning"><span>&laquo;</span></li>&nbsp; {% endif %}
+                                <li class="disabled btn btn-outline-info"><span>&laquo;</span></li>&nbsp; {% endif %}
                                 {% if posts.has_next %}
                                 <li class="page-item"><a class="btn btn-outline-info"
                                         href="?page={{ posts.next_page_number }}{% if request.GET.get.q %}&q={{ request.GET.get.q }}{% endif %}">Next
                                         <i class="fa fa-angle-right"></i></a></li> {% else %} &nbsp;
-                                <li class="disabled btn btn-warning"><span>&raquo;</span></li>
+                                <li class="disabled btn btn-outline-info"><span>&raquo;</span></li>
                                 {% endif %}
                             </ul>
                         </nav>

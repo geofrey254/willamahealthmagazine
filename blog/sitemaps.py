@@ -3,7 +3,7 @@ from django.shortcuts import reverse
 from .models import Post, Lists, News
 class StaticViewSitemap(Sitemap):
     def items(self):
-        return ['home', 'lists', 'news', 'releases', 'contact']
+        return ['home', 'lists', 'news', 'releases']
 
     def location(self, item):
         return reverse(item)

@@ -13,9 +13,6 @@ urlpatterns = [
     path('the_savanna_wave_lists/<slug:slug>/', views.list_detail, name='list-detail'),
     path('the_savanna_wave/news/<slug:slug>/', views.news_detail, name='news-detail'),
     path('the_savanna_wave/category/<slug:slug>/', views.CategoryView, name='blog_category'),
-
-    # Contact Us Urls
-    path('the_savanna_wave_contact_us/', views.contact, name='contact'),
 ]
 
 if settings.DEBUG: 

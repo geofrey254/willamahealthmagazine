@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView,View, CreateView
-from django.core.mail import send_mail, send_mass_mail
+from django.core.mail import send_mail, send_mass_mail, BadHeaderError
 from django.conf import settings
 from django.db.models import Q
 from .models import Post, Category, Advert, Lat_Real, Lists, News
@@ -48,25 +48,6 @@ def home(request, *args, **kwargs):
     }    
 
     return render(request, 'home.html', context)
-
-# contact page views start here
-def contact(request):
-    if request.method == 'POST':
-            contact_name = request.POST.get('contact_name')
-            contact_email = request.POST.get('contact_email')
-            contact_content = request.POST.get('contact_content')
-
-            send_mail(
-                contact_name,
-                contact_content,
-                contact_email,
-                ['devongeoffreymaina@gmail.com'],
-                )
-           
-            return render (request, 'contact.html',{'contact_name': contact_name})
-    
-    else:
-            return render (request, 'contact.html')
 
 def CategoryView(request, slug):
     category      =   Category.objects.get(slug=slug)
