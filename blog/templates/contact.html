@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% load crispy_forms_tags %} {% load static %} {% block title %}The Savanna Wave-Contact Us Page{% endblock %}
+{% block meta_description %}Contact us for any clarifications, complaints or enqueries.{% endblock%}
+{% block content %}
+{% if contact_name %}
+<center class="mt-5 mb-5">
+    <h2 class="text-danger">Thanks <span class="font-italic">{{ contact_name }}</span> <i class="fa fa-thumbs-o-up text-warning"></i></h2>
+    <p class="text-primary">We have received your Email and will Respond Shortly.</p>
+</center>
+{% else %}
+<section id="contact" class="contact-area top-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12 py-5">
+                <div class="social-area">
+                    <div class="col-12 text-center mb-5">
+                        <a href="https://www.facebook.com/manime.finance"><i class="fa fa-facebook text-light"></i></a>
+                        <a href="https://twitter.com/FinanceManime"><i class="fa fa-twitter text-light"></i></a>
+                        <a href="https://www.instagram.com/manime.finance/"><i class="fa fa-instagram text-light"></i></a>
+                    </div>
+                </div>
+                <h3 class="text-light text-center"><i class="fa fa-envelope"></i> Get In Touch </h3>
+                <div class="contact-form-area">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="text" name="contact_name" class="form-control mb-30" placeholder="Your Name">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="email" name="contact_email" class="form-control mb-30" placeholder="Your Email">
+                            </div>
+                            <div class="col-12">
+                                <textarea name="contact_content" class="form-control mb-30" placeholder="Your Message"></textarea>
+                            </div>
+                            <div class="col-12 align-content-center text-center">
+                                <button type="submit" class="btn btn-outline-light">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- container -->
+</section>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,207 @@
+{% extends "base.html" %} {% load crispy_forms_tags %} {% load static %} {% block title %}The Savanna Wave-Online Entertainment Magazine{% endblock %}
+{% block meta_description %}Get to know the latest trends and content from the entertainment industry all around Africa. We got you sorted with the latest from music, film, art, photography and lots more.{% endblock%}
+{% block content %}
+<!-- This is the second navbar for categories -->
+<nav class="navbar navbar-expand navbar-light bg-info">
+    <div class="container">
+        <div class="navbar" id="navbarSupportedContent-3">
+            <ul class="navbar-nav">
+                {% for cat in cats %}
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'blog_category' cat.slug %}">{{ cat.title }}</a>
+                </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="marq">
+<marquee behavior="scroll" direction="left"><p style="white-space: nowrap;" class="text-danger"><span class="text-dark">Trending Music:</span> {% for new in trend_music %}&blacktriangle;{{ new.song_title }}-{{ new.artist_name }}&emsp; {% endfor %}</p></marquee>
+</div>
+
+<!-- Search bar -->
+<section class="search">
+    <form class="form-search" method="get" action="{% url 'home' %}">
+        {% csrf_token %}
+        <input type="search" name="q" placeholder="Search Article">
+        <button type="submit">Search</button>
+    </form>
+</section>
+
+<!-- Breadcrumb Area Start -->
+<section class="top-area">
+    <div class="container">        
+        <div class="col-12 mb-4 text-center">
+            <h3 class="text-light">Featured <i class="fa fa-rss text-unique"></i></h3>
+        </div>
+        <div class="row justify-content-between align-content-between">
+            {% for post in featured %}
+            <div class="col-12 col-sm-8 col-md-6 col-lg-6 mb-2">
+                <div class="card">
+                    {% if post.blog_img %}
+                    <a href="#"><img src="{{ post.blog_img.url }}" alt="Trending Post" class="card-img"></a>
+                    {% endif %}
+                    <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
+                        {% for cat in post.categories.all %}<span
+                            class="text-unique text-capitalize">{{ cat.title }}</span>{% endfor %}
+                        <h4 class="card-title text-light">{{ post.title|slice:":70"|safe }}...</h4>
+                        <div class="link d-flex">
+                            <a href="{{post.get_absolute_url}}" class="card-link btn btn-unique text-light">Read
+                                More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Recent News -->
+<section class="recent-news">
+    <div class="container">
+        <div class="col-12">
+            <h3>Recent News <i class="fa fa-rss text-unique"></i></h3>
+        </div>
+        <div class="roberto-news-area section-padding-100-0">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8">
+
+                        <!-- Single Blog Post Area -->
+                        {% for post in posts %}
+
+                        <div class="single-blog-post d-flex align-items-center mb-50 wow fadeInUp"
+                            data-wow-delay="100ms">
+                            <!-- Post Thumbnail -->
+                            <div class="post-thumbnail">
+                                {% if post.blog_img %}
+                                <a href="#"><img src="{{ post.blog_img.url }}" alt=""></a>
+                                {% endif %}
+                            </div>
+                            <!-- Post Content -->
+                            <div class="post-content">
+                                <!-- Post Title -->
+                                <a href="{{post.get_absolute_url}}"
+                                    class="post-title">{{ post.title|slice:":60"|safe }}...</a>
+                                <p>{{ post.body|slice:":200"|safe }}...</p>
+                                <!-- Post Meta -->
+                                <div class="post-meta">
+                                    <a href="#" class="post-author">{{ post.created_on|timesince }}</a>
+                                    {% for cat in post.categories.all %}
+                                    <a href="{% url 'blog_category' cat.slug %}"
+                                        class="post-tutorial">{{ cat.title }}</a> {% endfor %}
+                                </div>
+
+                                <a href="{% url 'article-detail' post.slug %}" class="btn btn-unique text-light">Read
+                                    More</a>
+
+                            </div>
+                        </div>
+
+                        <hr class="bg-info"> {% endfor %}
+                        <!-- Pagination -->
+                        {% if posts.has_other_pages %}
+                        <nav class="roberto-pagination wow fadeInUp mb-100" data-wow-delay="600ms">
+                            <ul class="pagination">
+                                {% if posts.has_previous %}
+                                <li class="page-item"><a class="btn btn-outline-info"
+                                        href="?page={{ posts.previous_page_number }}{% if request.GET.get.q %}&q={{ request.GET.get.q }}{% endif %}"><i
+                                            class="fa fa-angle-left"></i> Previous</a></li>
+                                {% else %}
+                                <li class="disabled btn btn-outline-info"><span>&laquo;</span></li>&nbsp; {% endif %}
+                                {% if posts.has_next %}
+                                <li class="page-item"><a class="btn btn-outline-info"
+                                        href="?page={{ posts.next_page_number }}{% if request.GET.get.q %}&q={{ request.GET.get.q }}{% endif %}">Next
+                                        <i class="fa fa-angle-right"></i></a></li> {% else %} &nbsp;
+                                <li class="disabled btn btn-outline-info"><span>&raquo;</span></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="col-12 col-sm-8 col-md-6 col-lg-4 py-5 section-padding-100-70">
+                        <div class="roberto-sidebar-area pl-md-4">
+                            <!-- Newsletter -->
+                    {% for ad in adverts %}
+                    <div class="single-widget-area mb-100">
+                        <div class="ad">
+                            <img src="{{ ad.adv.url }}" alt="ad-image">
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                            <div class="col-12 mb-4">
+                                <h5>Trending <i class="fa fa-globe text-danger"></i></h5>
+                            </div>
+                            <!-- Recent Post -->
+                            <!-- Single Recent Post -->
+                            {% for post in trending %}
+
+                            <div class="single-recent-post d-flex">
+                                <!-- Thumb -->
+                                <div class="post-thumb">
+                                    {% if post.blog_img %}
+                                    <a href="#"><img src="{{ post.blog_img.url }}" alt=""></a>
+                                    {% endif %}
+                                </div>
+                                <!-- Content -->
+                                <div class="post-content">
+                                    <!-- Post Meta -->
+                                    <div class="post-meta">
+                                        <a href="#" class="post-author">{{ post.created_on.date }}</a>
+                                        {% for cat in post.categories.all %}
+                                        <a href="{% url 'blog_category' cat.slug %}" class="post-tutorial"
+                                            style="font-family: 'Archivo Narrow', sans-serif;">{{ cat.title }}</a>
+                                        {% endfor %}
+                                    </div>
+                                    <a href="{% url 'article-detail' post.slug %}" class="post-title"
+                                        style="font-family: 'Poppins', sans-serif;">{{ post.title|slice:":40"|safe }}...</a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <hr class="bg-info">
+
+                            <div class="col-12 mb-4">
+                                <h5>Latest <i class="fa fa-clock-o text-danger"></i></h5>
+                            </div>
+                            <!-- Recent Post -->
+                            <!-- Single Recent Post -->
+                            {% for post in latest %}
+
+                            <div class="single-recent-post d-flex">
+                                <!-- Thumb -->
+                                <div class="post-thumb">
+                                    {% if post.blog_img %}
+                                    <a href="#"><img src="{{ post.blog_img.url }}" alt=""></a>
+                                    {% endif %}
+                                </div>
+                                <!-- Content -->
+                                <div class="post-content">
+                                    <!-- Post Meta -->
+                                    <div class="post-meta">
+                                        <a href="#" class="post-author">{{ post.created_on.date }}</a>
+                                        {% for cat in post.categories.all %}
+                                        <a href="{% url 'blog_category' cat.slug %}" class="post-tutorial"
+                                            style="font-family: 'Archivo Narrow', sans-serif;">{{ cat.title }}</a>
+                                        {% endfor %}
+                                    </div>
+                                    <a href="{% url 'article-detail' post.slug %}" class="post-title"
+                                        style="font-family: 'Poppins', sans-serif;">{{ post.title|slice:":40"|safe }}...</a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Area End -->
+{% endblock content %}

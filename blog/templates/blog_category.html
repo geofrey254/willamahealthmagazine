@@ -1,0 +1,160 @@
+{% extends "base.html" %} {% load crispy_forms_tags %} {% load static %}
+{% block title %}{{ categories.title }}{% endblock %} {% block meta_description %}{{ categories.title }}{% endblock %} {% block content %}
+<!-- Breadcrumb Area Start -->
+<div class="breadcrumb-area bg-img bg-overlay jarallax">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center">
+                    <div class="breadcrumb-post-content">
+                        <h2 class="post-title">{{ category.title }}</h2>
+                        <div class="post-meta">
+                            <a href="{% url 'home' %}" style="text-decoration: none;">Home</a>
+                            <a href="#" style="text-decoration: none;">{{ category.title }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End -->
+<div class="container alert-success">
+    <marquee behavior="scroll" direction="left">
+        <p style="white-space: nowrap;" class="text-danger"><span class="text-dark">Trending Music:</span>
+            {% for new in trend_music %}&blacktriangle;{{ new.song_title }}-{{ new.artist_name }}&emsp; {% endfor %}</p>
+    </marquee>
+</div>
+<!-- Blog Area Start -->
+<div class="roberto-news-area section-padding-100-0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+
+                <!-- Single Blog Post Area -->
+                {% for post in category.posts.all %}
+
+                <div class="single-blog-post d-flex align-items-center mb-50 wow fadeInUp" data-wow-delay="100ms">
+                    <!-- Post Thumbnail -->
+                    <div class="post-thumbnail">
+                        {% if post.blog_img %}
+                        <a href="#"><img src="{{ post.blog_img.url }}" alt=""></a>
+                        {% endif %}
+                    </div>
+                    <!-- Post Content -->
+                    <div class="post-content">                        
+                        <!-- Post Title -->
+                        <a href="{{post.get_absolute_url}}" class="post-title">{{ post.title }}</a>
+                        <p>{{ post.body|slice:":200"|safe }}...</p>
+                        <!-- Post Meta -->
+                        <div class="post-meta">
+                            <a href="#" class="post-author">{{ post.created_on|timesince }}</a>
+                            {% for cat in post.categories.all %}
+                            <a href="#" class="post-tutorial">{{ cat.title }}</a> {% endfor %}
+                        </div>
+                        <a href="{% url 'article-detail' post.slug %}" class="btn btn-unique text-light">Read More</a>
+                    </div>
+                </div>
+
+                {% endfor %}
+                <!-- Pagination -->
+                {% if posts.has_other_pages %}
+                <nav class="roberto-pagination wow fadeInUp mb-100" data-wow-delay="600ms">
+                    <ul class="pagination">
+                        {% if posts.has_previous %}
+                        <li class="page-item"><a class="page-link"
+                                href="?page={{ posts.previous_page_number }}{% if request.GET.get.q %}&q={{ request.GET.get.q }}{% endif %}"><i
+                                    class="fa fa-angle-left"></i> Previous</a></li>
+                        {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %} {% if posts.has_next %}
+                        <li class="page-item"><a class="page-link"
+                                href="?page={{ posts.next_page_number }}{% if request.GET.get.q %}&q={{ request.GET.get.q }}{% endif %}">Next
+                                <i class="fa fa-angle-right"></i></a></li>
+                        {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                {% endif %}
+
+            </div>
+
+            <div class="col-12 col-sm-8 col-md-6 col-lg-4 py-5 section-padding-100-70">
+                <div class="roberto-sidebar-area pl-md-4">
+                    <!-- Newsletter -->
+                    {% for ad in adverts %}
+                    <div class="single-widget-area mb-100">
+                        <div class="ad">
+                            <img src="{{ ad.adv.url }}" alt="ad-image">
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <div class="col-12 mb-4">
+                        <h5>Trending <i class="fa fa-globe text-danger"></i></h5>
+                    </div>
+                    <!-- Recent Post -->
+                    <!-- Single Recent Post -->
+                    {% for post in trending %}
+
+                    <div class="single-recent-post d-flex">
+                        <!-- Thumb -->
+                        <div class="post-thumb">
+                            {% if post.blog_img %}
+                            <a href="#"><img src="{{ post.blog_img.url }}" alt=""></a>
+                            {% endif %}
+                        </div>
+                        <!-- Content -->
+                        <div class="post-content">
+                            <!-- Post Meta -->
+                            <div class="post-meta">
+                                <a href="#" class="post-author">{{ post.created_on.date }}</a>
+                                {% for cat in post.categories.all %}
+                                <a href="{% url 'blog_category' cat.slug %}" class="post-tutorial"
+                                    style="font-family: 'Archivo Narrow', sans-serif;">{{ cat.title }}</a>
+                                {% endfor %}
+                            </div>
+                            <a href="{% url 'article-detail' post.slug %}" class="post-title"
+                                style="font-family: 'Poppins', sans-serif;">{{ post.title|slice:":40"|safe }}...</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <hr class="bg-info">
+
+                    <div class="col-12 mb-4">
+                        <h5>Latest <i class="fa fa-clock-o text-danger"></i></h5>
+                    </div>
+                    <!-- Recent Post -->
+                    <!-- Single Recent Post -->
+                    {% for post in latest %}
+
+                    <div class="single-recent-post d-flex">
+                        <!-- Thumb -->
+                        <div class="post-thumb">
+                            {% if post.blog_img %}
+                            <a href="#"><img src="{{ post.blog_img.url }}" alt=""></a>
+                            {% endif %}
+                        </div>
+                        <!-- Content -->
+                        <div class="post-content">
+                            <!-- Post Meta -->
+                            <div class="post-meta">
+                                <a href="#" class="post-author">{{ post.created_on.date }}</a>
+                                {% for cat in post.categories.all %}
+                                <a href="{% url 'blog_category' cat.slug %}" class="post-tutorial"
+                                    style="font-family: 'Archivo Narrow', sans-serif;">{{ cat.title }}</a>
+                                {% endfor %}
+                            </div>
+                            <a href="{% url 'article-detail' post.slug %}" class="post-title"
+                                style="font-family: 'Poppins', sans-serif;">{{ post.title|slice:":40"|safe }}...</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog Area End -->
+{% endblock content %}

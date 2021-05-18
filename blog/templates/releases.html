@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% load crispy_forms_tags %} {% load static %} {% block title %}The Savanna Wave-Latest Releases{% endblock %}
+{% block meta_description %}Check Out the latest tracks released. The list is updated everyday as new tracks are released to keep you upto date with the latest.{% endblock%}
+{% block content %}
+<div class="container alert-success">
+<marquee behavior="scroll" direction="left"><p style="white-space: nowrap;" class="text-danger"><span class="text-dark">Trending Music:</span> {% for new in trend_music %}&blacktriangle;{{ new.song_title }}-{{ new.artist_name }}&emsp; {% endfor %}</p></marquee>
+</div>
+<section class="new section-padding-100-70">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <h1 style="font-family: 'Poppins', sans-serif">This week's Releases</h1>            
+        </div>
+        <div class="row justify-content-between">
+            {% for new in release %}
+            <div class="card mb-5" style="width: 18rem;">
+                {% if new.alb_art %}
+                <img class="card-img-top" src="{{ new.alb_art.url }}" alt="Album Art" style="width: 100%; height:150px;">
+                {% endif %}
+                <div class="card-body">
+                    <h2 class="card-title text-danger">{{ new.song_title }}</h2>
+                    <h4 class="card-title">{{ new.artist_name }}</h4>
+                    <h5 class="card-title">Country: {{ new.country }}</h5>
+                    <h6 class="card-title text-info">Release date: {{ new.release_date }}</h6>
+                </div>
+                <div class="card-body">
+                    <a href="{{ new.youtube }}" class="card-link text-danger" data-toggle="tooltip" data-placement="top"
+                        title="Youtube"><i class="fa fa-youtube-play"></i></a>
+                    <a href="{{ new.instagram }}" class="card-link text-danger" data-toggle="tooltip"
+                        data-placement="top" title="Instagram"><i class="fa fa-instagram"></i></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}
