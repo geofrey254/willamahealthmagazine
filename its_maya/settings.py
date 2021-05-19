@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path, os
+import django_heroku
+import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['thesavannawave.herokuapp.com']
 
 # Admin site header
 ADMIN_SITE_HEADER   =   "The Savanna Wave Administration"
@@ -49,6 +52,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -131,15 +135,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Static files collection
 
-STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-# Location of staticfiles
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
+STATIC_ROOT  =   os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static' , 'media')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+#  Add configuration for static files storage using whitenoise
+STATICFILES_STORAGE = 'whitenoise.django.CompressedManifestStaticFilesStorage'
+
 
 # TINYMCE TOOLBARS
 TINYMCE_DEFAULT_CONFIG = {
@@ -168,3 +175,6 @@ TINYMCE_DEFAULT_CONFIG = {
     'menubar': True,
     'statusbar': True,
 }
+
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
