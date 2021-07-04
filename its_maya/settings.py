@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-8*28(np6ju$p2u@+^$(n0xx=6kftx$e$!i^1cx+wlqwl*jbm^x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = ['143.244.148.134']
 
 # Admin site header
 ADMIN_SITE_HEADER   =   "The Savanna Wave Administration"
