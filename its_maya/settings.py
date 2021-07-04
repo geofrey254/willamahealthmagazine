@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path, os
-import django_heroku
 import dj_database_url
 from decouple import config
 
@@ -178,4 +177,3 @@ TINYMCE_DEFAULT_CONFIG = {
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
 
-django_heroku.settings(locals())
