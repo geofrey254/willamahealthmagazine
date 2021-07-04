@@ -2,22 +2,9 @@
 {% block meta_description %}Get to know the latest trends and content from the entertainment industry all around Africa. We got you sorted with the latest from music, film, art, photography and lots more.{% endblock%}
 {% block content %}
 <!-- This is the second navbar for categories -->
-<nav class="navbar navbar-expand navbar-light bg-info">
-    <div class="container">
-        <div class="navbar" id="navbarSupportedContent-3">
-            <ul class="navbar-nav">
-                {% for cat in cats %}
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{% url 'blog_category' cat.slug %}">{{ cat.title }}</a>
-                </li>
-                {% endfor %}
-
-            </ul>
-        </div>
-    </div>
-</nav>
-<div class="marq">
-<marquee behavior="scroll" direction="left"><p style="white-space: nowrap;" class="text-danger"><span class="text-dark">Trending Music:</span> {% for new in trend_music %}&blacktriangle;{{ new.song_title }}-{{ new.artist_name }}&emsp; {% endfor %}</p></marquee>
+<div class="marq bg-info">
+<marquee behavior="scroll" direction="left"><p style="white-space: nowrap;" class="text-primary"><span class="text-dark">Categories:</span> {% for cat in cats %}&blacktriangle;<a href="{% url 'blog_category' cat.slug %}" class="post-tutorial text-light"
+    style="font-family: 'Archivo Narrow', sans-serif; text-decoration:none;">{{ cat.title }}</a>&emsp; {% endfor %}</p></marquee>
 </div>
 
 <!-- Search bar -->

@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView,View, CreateView
 from django.core.mail import send_mail, send_mass_mail, BadHeaderError
 from django.conf import settings
 from django.db.models import Q
-from .models import Post, Category, Advert, Lat_Real, Lists, News
+from .models import Post, Category, Advert, Lists, News
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
 
@@ -16,7 +16,6 @@ def home(request, *args, **kwargs):
     featured    =   Post.objects.filter(blog_type=1).order_by('-created_on')[0:2]
     trending    =   Post.objects.filter(blog_type=2).order_by('-created_on')[0:3]
     adverts     =   Advert.objects.all()[0:1]
-    trend_music     =   Lat_Real.objects.filter(music_type=1).order_by('-created_on')
 
 
 # Search filter
@@ -44,7 +43,6 @@ def home(request, *args, **kwargs):
         'featured':featured,
         'trending':trending,
         'adverts':adverts,
-        'trend_music':trend_music
     }    
 
     return render(request, 'home.html', context)
@@ -55,7 +53,6 @@ def CategoryView(request, slug):
     adverts     =   Advert.objects.all()[0:1]
     latest      =   Post.objects.order_by('-created_on')[0:3]
     trending    =   Post.objects.filter(blog_type=2).order_by('-created_on')[0:3]
-    trend_music     =   Lat_Real.objects.filter(music_type=1).order_by('-created_on')
 
 
 
@@ -65,7 +62,6 @@ def CategoryView(request, slug):
         'adverts':adverts,
         'trending':trending,
         'latest':latest,
-        'trend_music':trend_music
 
     }
     return render(request, "blog_category.html", context)
@@ -75,29 +71,18 @@ def article_detail(request, slug, *args, **kwargs):
     latest      =   Post.objects.order_by('-created_on')[0:4]
     adverts     =   Advert.objects.all()[0:1]
     trending    =   Post.objects.filter(blog_type=2).order_by('-created_on')[0:3]
-    trend_music     =   Lat_Real.objects.filter(music_type=1).order_by('-created_on')
 
     context     =   {
         "post": post,
         'latest':latest, 
         'adverts':adverts,
         'trending':trending,
-        'trend_music':trend_music
     }
 
     return render(request, "article.html", context)
 
 # Latest Releases Views
-def releases(request, *args, **kwargs):
-    release     =   Lat_Real.objects.order_by('-created_on')
-    trend_music     =   Lat_Real.objects.filter(music_type=1).order_by('-created_on')
 
-    context     =   {
-        'release':release,
-        'trend_music':trend_music    
-    }
-
-    return render(request, "releases.html", context)
 
 def lists_page(request, *args, **kwargs):
     posts       =   Lists.objects.all()
@@ -105,7 +90,6 @@ def lists_page(request, *args, **kwargs):
     latest      =   Post.objects.order_by('-created_on')[0:4]
     adverts     =   Advert.objects.all()[0:1]
     trending    =   Post.objects.filter(blog_type=2).order_by('-created_on')[0:3]
-    trend_music     =   Lat_Real.objects.filter(music_type=1).order_by('-created_on')
 
 
 
@@ -130,7 +114,6 @@ def lists_page(request, *args, **kwargs):
         'latest':latest, 
         'adverts':adverts,
         'trending':trending,
-        'trend_music':trend_music
     }    
 
     return render(request, 'lists.html', context)
@@ -140,14 +123,12 @@ def list_detail(request, slug, *args, **kwargs):
     latest      =   Post.objects.order_by('-created_on')[0:4]
     adverts     =   Advert.objects.all()[0:1]
     trending    =   Post.objects.filter(blog_type=2).order_by('-created_on')[0:3]
-    trend_music     =   Lat_Real.objects.filter(music_type=1).order_by('-created_on')
 
     context     =   {
         "post": post,
         'latest':latest, 
         'adverts':adverts,
         'trending':trending,
-        'trend_music':trend_music
     }
 
     return render(request, "list_detail.html", context)
@@ -158,7 +139,6 @@ def news(request, *args, **kwargs):
     latest      =   Post.objects.order_by('-created_on')[0:4]
     adverts     =   Advert.objects.all()[0:1]
     trending    =   Post.objects.filter(blog_type=2).order_by('-created_on')[0:3]
-    trend_music     =   Lat_Real.objects.filter(music_type=1).order_by('-created_on')
 
 # Search filter
     if search_post:
@@ -181,7 +161,6 @@ def news(request, *args, **kwargs):
         'latest':latest, 
         'adverts':adverts,
         'trending':trending,
-        'trend_music':trend_music
     }    
 
     return render(request, 'news.html', context)
@@ -191,14 +170,12 @@ def news_detail(request, slug, *args, **kwargs):
     latest      =   Post.objects.order_by('-created_on')[0:4]
     adverts     =   Advert.objects.all()[0:1]
     trending    =   Post.objects.filter(blog_type=2).order_by('-created_on')[0:3]
-    trend_music     =   Lat_Real.objects.filter(music_type=1).order_by('-created_on')
 
     context     =   {
         "post": post,
         'latest':latest, 
         'adverts':adverts,
         'trending':trending,
-        'trend_music':trend_music
     }
 
     return render(request, "news_detail.html", context)

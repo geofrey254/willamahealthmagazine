@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load crispy_forms_tags %} {% load static %} {% block title %}The Savanna Wave-{{ post.title }}{% endblock %}{% block meta_description %}{{ post.body }}{% endblock meta_description%} {% block content %}
+{% extends "base.html" %} {% load crispy_forms_tags %} {% load static %} {% block title %}The Savanna Wave-{{ post.title }}{% endblock %}{% block meta_description %}{{ post.body|slice:":200" }}{% endblock meta_description%} {% block content %}
 <!-- Breadcrumb Area Start -->
 <div class="breadcrumb-area bg-img bg-overlay jarallax">
     <div class="container h-100">

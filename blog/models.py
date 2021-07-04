@@ -95,39 +95,6 @@ class Advert(models.Model):
         outputIOStream.seek(0)
         adv    =   InMemoryUploadedFile(outputIOStream, 'ImageField', "%s.jpg" % adv.name.split('.')[0], 'image/jpeg', sys.getsizeof(outputIOStream), None)
         return adv
-
-class Lat_Real(models.Model):
-    alb_art      =   models.ImageField(upload_to="Album_Art/", null=True, blank=True) 
-    song_title   =   models.CharField(max_length=255, unique=True)
-    artist_name  =   models.CharField(max_length=255, null=True)
-    release_date =   models.CharField(max_length=255, null=True)
-    country      =   models.CharField(max_length=255, null=True)
-    created_on   =   models.DateTimeField(auto_now_add=True)
-    youtube      =   models.CharField(max_length=255, null=True, blank=True)
-    instagram    =   models.CharField(max_length=255, null=True, blank=True)
-    music_type   =   models.IntegerField(choices=LABEL, default=0)
-
-    class Meta:
-        ordering    =   ['-created_on']
-        verbose_name_plural =   'Latest Releases'
-
-    def __str__(self):
-        return self.song_title + ' | ' + str(self.artist_name)
-
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.alb_art   =   self.compressImage(self.alb_art)
-        super(Lat_Real, self).save(*args, **kwargs)
-    
-    def compressImage(self,alb_art):
-        imageTemporary  =   Image.open(alb_art)
-        outputIOStream  =   BytesIO()
-        imageTemporaryResized   =   imageTemporary.resize((1020,573))
-        imageTemporary.save(outputIOStream, format='JPEG', quality=60)
-        outputIOStream.seek(0)
-        alb_art    =   InMemoryUploadedFile(outputIOStream, 'ImageField', "%s.jpg" % alb_art.name.split('.')[0], 'image/jpeg', sys.getsizeof(outputIOStream), None)
-        return alb_art
-
 class Lists(models.Model):
     title       =   models.CharField(max_length=255, unique=True)
     blog_img    =   models.ImageField(upload_to="blog_pics/", null=True, blank=True)
