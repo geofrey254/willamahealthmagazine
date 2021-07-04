@@ -1,10 +1,8 @@
 {% extends "base.html" %} {% load crispy_forms_tags %} {% load static %}
 {% block title %}Willama Health Magazine - Lists{% endblock %} {% block meta_description %}Willama Health Magazine List.{% endblock %} {% block content %}
 <div class="container alert-success">
-    <marquee behavior="scroll" direction="left">
-        <p style="white-space: nowrap;" class="text-danger"><span class="text-dark">Trending Music:</span>
-            {% for new in trend_music %}&blacktriangle;{{ new.song_title }}-{{ new.artist_name }}&emsp; {% endfor %}</p>
-    </marquee>
+    <marquee behavior="scroll" direction="left"><p style="white-space: nowrap;" class="text-primary"><span class="text-dark">Categories:</span> {% for cat in cats %}&blacktriangle;<a href="{% url 'blog_category' cat.slug %}" class="post-tutorial text-light"
+        style="font-family: 'Archivo Narrow', sans-serif; text-decoration:none;">{{ cat.title }}</a>&emsp; {% endfor %}</p></marquee>
 </div>
 <!-- Blog Area Start -->
 <div class="roberto-news-area section-padding-100-0">
