@@ -146,6 +146,8 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
 # Static files collection
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
