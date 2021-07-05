@@ -14,6 +14,4 @@ urlpatterns = [
     path('the_savanna_wave/category/<slug:slug>/', views.CategoryView, name='blog_category'),
 ]
 
-if settings.DEBUG: 
-        urlpatterns += static(settings.MEDIA_URL, 
-                              document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
