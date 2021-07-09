@@ -2,11 +2,6 @@
 {% block meta_description %}Willama Health Magazine - News & Events{% endblock%}
 {% block content %}
 
-<div class="alert-success">
-    <marquee behavior="scroll" direction="left"><p style="white-space: nowrap;" class="text-primary"><span class="text-dark">Categories:</span> {% for cat in cats %}&blacktriangle;<a href="{% url 'blog_category' cat.slug %}" class="post-tutorial text-light"
-        style="font-family: 'Archivo Narrow', sans-serif; text-decoration:none;">{{ cat.title }}</a>&emsp; {% endfor %}</p></marquee>
-</div>
-
 <!-- Search bar -->
 <section class="search">
     <form class="form-search" method="get" action="{% url 'news' %}">
