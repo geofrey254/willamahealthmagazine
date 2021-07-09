@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-8*28(np6ju$p2u@+^$(n0xx=6kftx$e$!i^1cx+wlqwl*jbm^x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['143.244.148.134', "willamahealth.com", "www.willamahealth.com"]
+ALLOWED_HOSTS = ['143.244.148.134', "willamahealth.com", "www.willamahealth.com", '127.0.0.1']
 
 # Admin site header
 ADMIN_SITE_HEADER   =   "Willama Health Magazine Administration"
@@ -88,8 +88,8 @@ if DEBUG:
 
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
         }
     }
 

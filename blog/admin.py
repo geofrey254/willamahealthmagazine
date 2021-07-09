@@ -3,7 +3,7 @@ from .models import Post, Category, Advert, Lists, News
 
 class PostAdmin(admin.ModelAdmin):
     list_display=('title','slug','status','created_on', 'blog_type', 'status')
-    list_filter=("status","blog_type","created_on")
+    list_filter=("status","blog_type","created_on","categories")
     search_fields=['title','body','blog_type']
     prepopulated_fields={'slug':('title',)}
 
