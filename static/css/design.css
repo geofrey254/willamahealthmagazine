@@ -183,7 +183,7 @@ section {
     z-index: 5;
     display: flex;
     align-items: center;
-    background: #2F2FA2;
+    background: teal;
 }
 
 .navbar a {
@@ -260,7 +260,7 @@ section {
 /* ######################################## */
 
 .footer-area {
-    background: #2F2FA2;
+    background: teal;
     overflow: hidden;
 }
 
@@ -413,7 +413,7 @@ section {
 /* TOP AREA */
 
 .top-area {
-    background: #242582;
+    background: teal;
 }
 
 .top-area .text-unique {
@@ -447,7 +447,7 @@ section {
 
 .breadcrumb-area {
     position: relative;
-    background: #2F2FA2;
+    background: teal;
     background-size: cover;
     z-index: 1;
     height: 300px;
@@ -518,7 +518,7 @@ section {
 
 .breadcrumb-area .room-price {
     font-size: 36px;
-    color: #2F2FA2;
+    color: teal;
     margin-bottom: 0;
 }
 
@@ -561,7 +561,7 @@ section {
 
 .breadcrumb-content .breadcrumb .breadcrumb-item a:hover,
 .breadcrumb-content .breadcrumb .breadcrumb-item a:focus {
-    color: #2F2FA2;
+    color: teal;
 }
 
 .breadcrumb-content .breadcrumb .breadcrumb-item+.breadcrumb-item::before {
@@ -610,7 +610,7 @@ section {
 
 .single-post-area .post-meta a:last-child {
     margin-right: 0;
-    color: #2F2FA2;
+    color: teal;
 }
 
 .single-post-area .post-title {
@@ -622,7 +622,7 @@ section {
 
 .single-post-area .post-title:hover,
 .single-post-area .post-title:focus {
-    color: #2F2FA2;
+    color: teal;
 }
 
 .single-post-area p {
@@ -638,7 +638,7 @@ section {
 
 .single-post-area:hover .post-title,
 .single-post-area:focus .post-title {
-    color: #2F2FA2;
+    color: teal;
 }
 
 .single-blog-post {
@@ -720,7 +720,7 @@ section {
 
 .single-blog-post .post-content .post-title:hover,
 .single-blog-post .post-content .post-title:focus {
-    color: #2F2FA2;
+    color: teal;
 }
 
 .single-blog-post .post-content .post-meta {
@@ -742,7 +742,7 @@ section {
 }
 
 .single-blog-post .post-content .btn-unique {
-    background-color: #2F2FA2;
+    background-color: teal;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -934,7 +934,7 @@ section {
 
 .post-author-area .author-social-info a:hover,
 .post-author-area .author-social-info a:focus {
-    color: #2F2FA2;
+    color: teal;
 }
 
 .pagination {
@@ -964,9 +964,9 @@ section {
 
 .pagination .page-link:hover,
 .pagination .page-link:focus {
-    background-color: #2F2FA2;
+    background-color: teal;
     color: #ffffff;
-    border-color: #2F2FA2;
+    border-color: teal;
 }
 
 .pagination .page-link:focus {
@@ -995,7 +995,7 @@ section {
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #2F2FA2;
+    color: teal;
     display: block;
     margin-bottom: 5px;
 }
@@ -1028,7 +1028,7 @@ section {
 
 .single-related-news .post-title:hover,
 .single-related-news .post-title:focus {
-    color: #2F2FA2;
+    color: teal;
 }
 
 .comment_area {
@@ -1082,7 +1082,7 @@ section {
 }
 
 .comment_area .comment-content .comment-meta .post-date {
-    color: #2F2FA2;
+    color: teal;
     font-size: 12px;
     text-transform: uppercase;
     display: block;
@@ -1132,8 +1132,8 @@ section {
 .comment_area .comment-content .comment-meta a.like:hover,
 .comment_area .comment-content .comment-meta a.reply:focus,
 .comment_area .comment-content .comment-meta a.reply:hover {
-    border-color: #2F2FA2;
-    background-color: #2F2FA2;
+    border-color: teal;
+    background-color: teal;
     color: #ffffff;
 }
 
@@ -1231,7 +1231,7 @@ section {
 
 .single-recent-post .post-content .post-title:hover,
 .single-recent-post .post-content .post-title:focus {
-    color: #2F2FA2;
+    color: teal;
 }
 
 .single-recent-post .post-content .post-meta {
@@ -1244,7 +1244,7 @@ section {
     position: relative;
     z-index: 1;
     font-size: 12px;
-    color: #2F2FA2;
+    color: teal;
     display: inline-block;
     margin-right: 30px;
     letter-spacing: 1px;
@@ -1307,7 +1307,7 @@ section {
 
 .popular-tags li a:hover,
 .popular-tags li a:focus {
-    color: #2F2FA2;
+    color: teal;
 }
 
 .post-meta a {
@@ -1339,7 +1339,7 @@ section {
     border: 1px solid #553D67;
     ;
     border-right: 0;
-    color: #242582;
+    color: teal;
     outline: none;
     -webkit-appearance: none;
 }
