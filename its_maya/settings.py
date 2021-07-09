@@ -30,9 +30,9 @@ DEBUG = False
 ALLOWED_HOSTS = ['143.244.148.134', "willamahealth.com", "www.willamahealth.com"]
 
 # Admin site header
-ADMIN_SITE_HEADER   =   "The Savanna Wave Administration"
-ADMIN_SITE_TITLE    =   "The Savanna Wave"
-ADMIN_INDEX_TITLE    =   "The Savanna Wave Site Administration"
+ADMIN_SITE_HEADER   =   "Willama Health Magazine Administration"
+ADMIN_SITE_TITLE    =   "Willama Health Magazine"
+ADMIN_INDEX_TITLE    =   "Willama Health Site Administration"
 
 
 # Application definition
