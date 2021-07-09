@@ -2,7 +2,7 @@
 {% block meta_description %}Get to know the latest technology, read exciting health articles and discover more from the health sector.{% endblock%}
 {% block content %}
 <!-- This is the second navbar for categories -->
-<div class="marq bg-info">
+<div class="marq alert-success">
 <marquee behavior="scroll" direction="left"><p style="white-space: nowrap;" class="text-primary"><span class="text-dark">Categories:</span> {% for cat in cats %}&blacktriangle;<a href="{% url 'blog_category' cat.slug %}" class="post-tutorial text-light"
     style="font-family: 'Archivo Narrow', sans-serif; text-decoration:none;">{{ cat.title }}</a>&emsp; {% endfor %}</p></marquee>
 </div>
