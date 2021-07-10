@@ -7,7 +7,6 @@ from .models import Post, Category, Advert, Lists, News
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
 
-
 # Create your views here.
 def home(request, *args, **kwargs):
     posts       =   Post.objects.all()
