@@ -7,6 +7,7 @@ from tinymce import models as tinymce_models
 from PIL import Image
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.template.defaultfilters import slugify
 
 STATUS=(
     (0,"Draft"),
@@ -65,6 +66,10 @@ class Post(models.Model):
         if not self.id:
             self.blog_img   =   self.compressImage(self.blog_img)
         super(Post, self).save(*args, **kwargs)
+
+        if not self.slug:
+            self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)
     
     def compressImage(self,blog_img):
         imageTemporary  =   Image.open(blog_img)

@@ -7,6 +7,7 @@ from .models import Post, Category, Advert, Lists, News
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
 
+
 # Create your views here.
 def home(request, *args, **kwargs):
     posts       =   Post.objects.all()
@@ -47,6 +48,22 @@ def home(request, *args, **kwargs):
 
     return render(request, 'home.html', context)
 
+def registerPage(request):
+    form    =      CreateUserForm()
+
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = CreateUserForm()
+    return render(request, 'register.html', {'form': form})
+
 def CategoryView(request, slug):
     category      =   Category.objects.get(slug=slug)
     cats        =   Category.objects.all()
@@ -80,6 +97,19 @@ def article_detail(request, slug, *args, **kwargs):
     }
 
     return render(request, "article.html", context)
+
+# Posts delete and update panel
+class CreatePost(CreateView):
+    model = Post
+    template_name = 'post_create.html'
+    fields = ('title','slug','author', 'blog_img','img_credits' ,'body' ,'blog_type', 'categories')
+    
+
+def post_update(request, slug):
+    pass
+
+def post_delete(request, slug):
+    pass
 
 # Latest Releases Views
 

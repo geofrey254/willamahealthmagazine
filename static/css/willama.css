@@ -1,0 +1,35 @@
+.reg {
+    background: #1D976C;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #93F9B9, teal);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #93F9B9, teal);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+    text-align: center;
+    min-height: 100vh;
+}
+
+.reg p {
+    max-width: 24rem;
+    margin-right: auto;
+    margin-bottom: 2.5rem;
+    margin-left: auto;
+}
+
+.reg .form-container {
+    max-width: 26rem;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 2.25rem 1.25rem 1.25rem 1.25rem;
+    border-radius: 40px;
+}
+
+
+.reg input {
+    border: none;
+    outline: none;
+    padding: 20px 10px 20px 5px;
+    border-radius: 25px;
+}

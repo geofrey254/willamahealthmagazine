@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% load crispy_forms_tags %}{% block title %}Create Post - Willama Health Magazine{% endblock %} {% block content %}
+{% if user.is_authenticated %}
+<section class="creation">
+    <div class="container col-12 text-center">
+        <h2 class="text">Create An Article</h2>
+        <hr>
+        {{ form.media }}
+        <form action="." method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row" style="font-family: 'Poppins';">
+                <div class="col-6">{{ form.title|as_crispy_field }}</div>
+                <div class="col-6">{{ form.slug|as_crispy_field }}</div>
+                <div class="col-6">{{ form.author|as_crispy_field }}</div>
+                <div class="form-control mt-4 mb-4">{{ form.blog_img|as_crispy_field }}</div>                
+                <div class="col-12">{{ form.img_credits|as_crispy_field }}</div>
+                <div class="col-12 py-5">{{ form.body|as_crispy_field }}</div>
+                <div class="col-6">{{ form.blog_type|as_crispy_field }}</div>
+                <div class="col-6">{{ form.categories|as_crispy_field }}</div>
+            </div>
+            <button type="submit" class="btn btn-dark mt-4">
+                Submit for moderation
+            </button>
+        </form>
+    </div>
+</section>
+{% else %}
+<div class="container text-center py-5">
+    <h3>Please Log In First</h3>
+    <p>By clicking on the Log in button below and logging into the create post panel, you agree to create genuine posts and to thoroughly check through the post before uploading.
+
+        This helps to avoid miscommunication and for easier moderation of the posts by the staff.
+        Creators are responsible for ensuring that they act in respect to the goal of the company of creating content that is reliable and that can be trusted.</p>
+    <a href="{% url 'login' %}" class="btn btn-primary mt-5 mb-5">Log In Here</a>
+</div>
+{% endif %}
+{% endblock content %}
