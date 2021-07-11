@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView,View, CreateView
 from django.core.mail import send_mail, send_mass_mail, BadHeaderError
 from django.conf import settings
 from django.db.models import Q
-from .models import Post, Category, Advert, Lists, News
+from .models import Post, Category, Advert, Lists, News, STATUS
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
 
@@ -13,8 +13,8 @@ def home(request, *args, **kwargs):
     search_post =   request.GET.get('q')
     cats        =   Category.objects.all()
     latest      =   Post.objects.order_by('-created_on')[0:3]
-    featured    =   Post.objects.filter(blog_type=1).order_by('-created_on')[0:2]
-    trending    =   Post.objects.filter(blog_type=2).order_by('-created_on')[0:3]
+    featured    =   Post.objects.filter(blog_type=1, status=1).order_by('-created_on')[0:2]
+    trending    =   Post.objects.filter(blog_type=2, status=1).order_by('-created_on')[0:3]
     adverts     =   Advert.objects.all()[0:1]
 
 
@@ -68,7 +68,7 @@ def CategoryView(request, slug):
     cats        =   Category.objects.all()
     adverts     =   Advert.objects.all()[0:1]
     latest      =   Post.objects.order_by('-created_on')[0:3]
-    trending    =   Post.objects.filter(blog_type=2).order_by('-created_on')[0:3]
+    trending    =   Post.objects.filter(blog_type=2, status=1).order_by('-created_on')[0:3]
 
 
 
@@ -86,7 +86,7 @@ def article_detail(request, slug, *args, **kwargs):
     post        =   Post.objects.get(slug=slug)
     latest      =   Post.objects.order_by('-created_on')[0:4]
     adverts     =   Advert.objects.all()[0:1]
-    trending    =   Post.objects.filter(blog_type=2).order_by('-created_on')[0:3]
+    trending    =   Post.objects.filter(blog_type=2, status=1).order_by('-created_on')[0:3]
 
     context     =   {
         "post": post,
@@ -111,7 +111,7 @@ def lists_page(request, *args, **kwargs):
     search_post =   request.GET.get('q')
     latest      =   Post.objects.order_by('-created_on')[0:4]
     adverts     =   Advert.objects.all()[0:1]
-    trending    =   Post.objects.filter(blog_type=2).order_by('-created_on')[0:3]
+    trending    =   Post.objects.filter(blog_type=2, status=1).order_by('-created_on')[0:3]
 
 
 
@@ -144,7 +144,7 @@ def list_detail(request, slug, *args, **kwargs):
     post        =   Lists.objects.get(slug=slug)
     latest      =   Post.objects.order_by('-created_on')[0:4]
     adverts     =   Advert.objects.all()[0:1]
-    trending    =   Post.objects.filter(blog_type=2).order_by('-created_on')[0:3]
+    trending    =   Post.objects.filter(blog_type=2, status=1).order_by('-created_on')[0:3]
 
     context     =   {
         "post": post,
@@ -160,7 +160,7 @@ def news(request, *args, **kwargs):
     search_post =   request.GET.get('q')
     latest      =   Post.objects.order_by('-created_on')[0:4]
     adverts     =   Advert.objects.all()[0:1]
-    trending    =   Post.objects.filter(blog_type=2).order_by('-created_on')[0:3]
+    trending    =   Post.objects.filter(blog_type=2, status=1).order_by('-created_on')[0:3]
 
 # Search filter
     if search_post:
@@ -191,7 +191,7 @@ def news_detail(request, slug, *args, **kwargs):
     post        =   News.objects.get(slug=slug)
     latest      =   Post.objects.order_by('-created_on')[0:4]
     adverts     =   Advert.objects.all()[0:1]
-    trending    =   Post.objects.filter(blog_type=2).order_by('-created_on')[0:3]
+    trending    =   Post.objects.filter(blog_type=2, status=1).order_by('-created_on')[0:3]
 
     context     =   {
         "post": post,
