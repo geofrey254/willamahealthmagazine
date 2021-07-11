@@ -91,6 +91,8 @@ class Advert(models.Model):
         if not self.id:
             self.adv   =   self.compressImage(self.adv)
         super(Advert, self).save(*args, **kwargs)
+
+        
     
     def compressImage(self,adv):
         imageTemporary  =   Image.open(adv)
@@ -125,6 +127,10 @@ class Lists(models.Model):
         if not self.id:
             self.blog_img   =   self.compressImage(self.blog_img)
         super(Lists, self).save(*args, **kwargs)
+
+        if not self.slug:
+            self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)
     
     def compressImage(self,blog_img):
         imageTemporary  =   Image.open(blog_img)
@@ -160,6 +166,10 @@ class News(models.Model):
         if not self.id:
             self.blog_img   =   self.compressImage(self.blog_img)
         super(News, self).save(*args, **kwargs)
+
+        if not self.slug:
+            self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)
     
     def compressImage(self,blog_img):
         imageTemporary  =   Image.open(blog_img)

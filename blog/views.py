@@ -101,14 +101,7 @@ def article_detail(request, slug, *args, **kwargs):
 class CreatePost(CreateView):
     model = Post
     template_name = 'post_create.html'
-    fields = ('title','slug','author', 'blog_img','img_credits' ,'body' ,'blog_type', 'categories')
-    
-
-def post_update(request, slug):
-    pass
-
-def post_delete(request, slug):
-    pass
+    fields = ('title','author', 'blog_img','img_credits' ,'body' ,'blog_type', 'categories')    
 
 # Latest Releases Views
 

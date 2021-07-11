@@ -19,8 +19,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
     path('admin_create/', views.CreatePost.as_view(), name='post-create'),
-    path('post/slug/update/', views.post_update, name='post-update'),
-    path('post/slug/delete/', views.post_delete, name='post-delete')
 ]
 
 if settings.DEBUG: 
