@@ -112,6 +112,8 @@ class Lists(models.Model):
     body        =   tinymce_models.HTMLField()
     created_on  =   models.DateTimeField(auto_now_add=True)
     status      =   models.IntegerField(choices=STATUS, default=0)
+    blog_type   =   models.IntegerField(choices=TYPE, default=0)
+
 
     class Meta:
         ordering    =   ['-created_on']
@@ -151,6 +153,8 @@ class News(models.Model):
     body        =   tinymce_models.HTMLField()
     created_on  =   models.DateTimeField(auto_now_add=True)
     status      =   models.IntegerField(choices=STATUS, default=0)
+    blog_type   =   models.IntegerField(choices=TYPE, default=0)
+
 
     class Meta:
         ordering    =   ['-created_on']
