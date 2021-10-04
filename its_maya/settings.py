@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECRET_KEY = config('SECRET_KEY')
 SECRET_KEY = 'django-insecure-8*28(np6ju$p2u@+^$(n0xx=6kftx$e$!i^1cx+wlqwl*jbm^x'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['143.244.148.134', "willamahealth.com", "www.willamahealth.com", '127.0.0.1']
 
@@ -149,12 +149,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-if DEBUG:
-        STATICFILES_DIRS = [
-            os.path.join(BASE_DIR, 'static')
-       ]
-else:
-        STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
