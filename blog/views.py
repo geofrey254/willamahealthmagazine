@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView,View, CreateView
 from django.core.mail import send_mail, send_mass_mail, BadHeaderError
 from django.conf import settings
 from django.db.models import Q
-from .models import Post, Category, Advert, Lists, News, STATUS
+from .models import Post, Category, Advert, News, STATUS
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
 
@@ -104,56 +104,6 @@ class CreatePost(CreateView):
     fields = ('title','author', 'blog_img','img_credits' ,'body' ,'blog_type', 'categories')    
 
 # Latest Releases Views
-
-
-def lists_page(request, *args, **kwargs):
-    posts       =   Lists.objects.all()
-    search_post =   request.GET.get('q')
-    latest      =   Post.objects.order_by('-created_on')[0:4]
-    adverts     =   Advert.objects.all()[0:1]
-    trending    =   Post.objects.filter(blog_type=2, status=1).order_by('-created_on')[0:3]
-
-
-
-# Search filter
-    if search_post:
-        posts       =   Lists.objects.filter(Q(title__icontains=search_post)|Q(body__icontains=search_post)).distinct()
-    else:
-        posts   =   Lists.objects.filter(status=1).order_by('-created_on')
-        
-    paginator   = Paginator(posts, 3)
-    page        =   request.GET.get('page')
-    try:
-        posts   =   paginator.page(page)
-    except PageNotAnInteger:
-        posts   =   paginator.page(1)
-    except EmptyPage:
-        posts   =   paginator.page(paginator.num_pages)
-
-
-    context     =   {
-        'posts':posts,
-        'latest':latest, 
-        'adverts':adverts,
-        'trending':trending,
-    }    
-
-    return render(request, 'lists.html', context)
-
-def list_detail(request, slug, *args, **kwargs):
-    post        =   Lists.objects.get(slug=slug)
-    latest      =   Post.objects.order_by('-created_on')[0:4]
-    adverts     =   Advert.objects.all()[0:1]
-    trending    =   Post.objects.filter(blog_type=2, status=1).order_by('-created_on')[0:3]
-
-    context     =   {
-        "post": post,
-        'latest':latest, 
-        'adverts':adverts,
-        'trending':trending,
-    }
-
-    return render(request, "list_detail.html", context)
 
 def news(request, *args, **kwargs):
     posts       =   News.objects.all()

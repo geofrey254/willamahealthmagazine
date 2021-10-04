@@ -8,10 +8,8 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('lists/', views.lists_page, name='lists'),
     path('news', views.news, name='news'),
     path('willama_health/<slug:slug>/', views.article_detail, name='article-detail'),
-    path('willama_health/<slug:slug>/', views.list_detail, name='list-detail'),
     path('willama_health/news/<slug:slug>/', views.news_detail, name='news-detail'),
     path('willama_health/category/<slug:slug>/', views.CategoryView, name='blog_category'),
     

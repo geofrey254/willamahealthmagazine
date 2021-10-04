@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
-from blog.sitemaps import StaticViewSitemap, PostSitemap, ListsSitemap, NewsSitemap
+from blog.sitemaps import StaticViewSitemap, PostSitemap, NewsSitemap
 
 admin.site.site_header=settings.ADMIN_SITE_HEADER
 admin.site.site_title=settings.ADMIN_SITE_TITLE
@@ -27,7 +27,6 @@ admin.site.index_title=settings.ADMIN_INDEX_TITLE
 sitemaps = {
     'static': StaticViewSitemap,
     'Post': PostSitemap,
-    'Lists': ListsSitemap,
     'News': NewsSitemap
 }
 
