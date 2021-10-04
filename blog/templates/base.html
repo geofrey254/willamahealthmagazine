@@ -35,10 +35,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         crossorigin="anonymous" />
 
-    
 
 
-    
+
+
     <!-- Title -->
     <title>{% block title %}Willama Health Magazine - Towards a Better Healthy Living{% endblock %}</title>
 </head>
@@ -91,24 +91,29 @@
 
     <!-- Header Ends Here -->
     {% block content %} {% endblock %}
-<!-- ADSENSE -->
-<script async="async" data-cfasync="false"
-src="//pl16641501.effectivecpmgate.com/8eb0139aba91ab981bbc764118370ebc/invoke.js"></script>
-<div id="container-8eb0139aba91ab981bbc764118370ebc"></div>
+    <div class="container">
+        <div class="text">
+            <h2 class="text-danger">ADVERTISEMENTS</h2>
+        </div>
+        <!-- ADSENSE -->
+        <script async="async" data-cfasync="false"
+            src="//pl16641501.effectivecpmgate.com/8eb0139aba91ab981bbc764118370ebc/invoke.js"></script>
+        <div id="container-8eb0139aba91ab981bbc764118370ebc"></div>
 
-<!-- Google analytics -->
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
+        <!-- Google analytics -->
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
 
-function gtag() {
-    window.dataLayer.push(arguments);
-}
-gtag("js", new Date());
+            function gtag() {
+                window.dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
 
-gtag("config", "G-PXKT90YWM5");
-</script>    
+            gtag("config", "G-PXKT90YWM5");
+        </script>
+    </div>
 
     <!-- Footer Begins here -->
     <footer class="footer-area align-content-center text-center">
@@ -172,7 +177,7 @@ gtag("config", "G-PXKT90YWM5");
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
 
-    
+
 </body>
 
 </html>
