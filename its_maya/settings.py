@@ -152,7 +152,6 @@ MEDIA_URL = '/media/'
 if DEBUG:
         STATICFILES_DIRS = [
             os.path.join(BASE_DIR, 'static'),
-            '/var/www/static/',
        ]
 else:
         STATIC_ROOT = os.path.join(BASE_DIR, 'static')
